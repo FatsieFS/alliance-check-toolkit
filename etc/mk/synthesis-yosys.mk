@@ -19,11 +19,11 @@
    $(info - BLACKBOXES_ARG = $(BLACKBOXES_ARG))
  endif
 
- ifeq ($(YOSYS_SET_TOP),)
-   YOSYS_SET_TOP = Yes
- endif
+ YOSYS_SET_TOP ?= Yes
  $(info - Using YOSYS_SET_TOP = "$(YOSYS_SET_TOP)".)
 
+ NMIGEN_PYTHON ?= python3
+ $(info - Using NMIGEN_PYTHON = "$(NMIGEN_PYTHON)".)
 
 # -------------------------------------------------------------------
 # Yosys Rules (pattern matching).
@@ -45,7 +45,7 @@
 
 
 %.il: %.py
-	 python3 $*.py generate -t il > $*.out; \
+	 $(NMIGEN_PYTHON) $*.py generate -t il > $*.out; \
 	 if [ ! -f "$*.il" ]; then mv $*.out $*.il; else rm $*.out; fi
 
 
