@@ -1,4 +1,4 @@
-from celllib import StdCell, Wire, Via, Device
+from stdcell import StdCell, Wire, Via, Device
 
 flexlibextra = [
     StdCell(
