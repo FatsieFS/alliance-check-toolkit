@@ -1,1 +1,1 @@
-../rtl/eth_spram_256x32.v
+../rtl/eth_spram_256x32_flexmem.v
