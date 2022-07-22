@@ -24,11 +24,10 @@ helpers.setNdaTopDir( NdaDirectory )
 import Cfg
 from   CRL       import AllianceFramework, RoutingLayerGauge
 from   helpers   import overlay, l, u, n
-from   node130.sky130 import techno, StdCellLib #, LibreSOCIO
+from   node130.sky130 import techno, StdCellLib
 
 techno.setup()
 StdCellLib.setup()
-#LibreSOCIO.setup()
 
 af = AllianceFramework.get()
 
