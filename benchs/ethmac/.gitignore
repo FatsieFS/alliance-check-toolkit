@@ -1,0 +1,7 @@
+*.blif
+*.spi
+*.tcl
+*.vst
+*.gds
+!*/non_generated/*
+
