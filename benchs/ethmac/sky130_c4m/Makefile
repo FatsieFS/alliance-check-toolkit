@@ -1,6 +1,4 @@
 
-#export     PDKMASTER_TOP = $(shell pwd)/../../../../C4M/open_pdk/C4M.Sky130
-#export     PDKMASTER_TOP = $(shell pwd)/../../../../C4M.Sky130
  export     PDKMASTER_TOP = $(shell pwd)/../../../pdkmaster/C4M.Sky130
         LOGICAL_SYNTHESIS = Yosys
        PHYSICAL_SYNTHESIS = Coriolis

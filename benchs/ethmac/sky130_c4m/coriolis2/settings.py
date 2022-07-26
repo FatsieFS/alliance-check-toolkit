@@ -1,34 +1,29 @@
 # -*- Mode:Python -*-
 
 import os
+import sys
 import socket
 import helpers
+from   pathlib import Path
 
-NdaDirectory = None
-if 'NDA_TOP' in os.environ:
-    NdaDirectory = os.environ['NDA_TOP']
-if 'PDKMASTER_TOP' in os.environ:
-    PdkMasterTop = os.environ['PDKMASTER_TOP']
-    NdaDirectory = PdkMasterTop + '/libs.tech/coriolis/techno'
-if not NdaDirectory:
-    hostname = socket.gethostname()
-    if hostname.startswith('lepka'):
-        NdaDirectory = '/dsk/l1/jpc/crypted/soc/techno'
-        if not os.path.isdir(NdaDirectory):
-            print ('[ERROR] You forgot to mount the NDA '
-                   'encrypted directory, stupid!')
-    else:
-        NdaDirectory = '/users/soft/techno/techno'
+assert 'PDKMASTER_TOP' in os.environ, 'PDKMASTER_TOP not set'
+PdkMasterTop = os.environ['PDKMASTER_TOP']
+NdaDirectory = PdkMasterTop + '/libs.tech/coriolis/techno'
 helpers.setNdaTopDir( NdaDirectory )
+
+# add local path
+p = Path(__file__).parents[1].joinpath("non_generateds")
+sys.path.insert(0, str(p))
 
 import Cfg
 from   CRL       import AllianceFramework, RoutingLayerGauge
 from   helpers   import overlay, l, u, n
-from   node130.sky130 import techno, StdCellLib #, LibreSOCIO
+from   node130.sky130 import techno, StdCellLib
+from   pythonlib import ethmacmem
 
 techno.setup()
 StdCellLib.setup()
-#LibreSOCIO.setup()
+ethmacmem.setup()
 
 af = AllianceFramework.get()
 
